@@ -5,7 +5,10 @@
 
 {% for ticket in tickets %}
 <p>{{ ticket.name }}</p>
-<p>sport: {{ ticket.sport }}</p>
+<p>Date: {{ ticket.date }}</p>
+<p>Accompanied by: {{ ticket.companion }}</p>
+<p>Type: {{ ticket.event_type }}</p>
+<p>-----</p>
 {% endfor %}
 
 {% endblock %}
