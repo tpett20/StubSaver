@@ -1,3 +1,5 @@
+INCLUDE CSS REFERENCE 
+
 Log in page
     - Log in option
     - explanation/brief walkthrough of website functionality
@@ -5,7 +7,7 @@ Log in page
 
 Logged in page / user home screen
     - Nav bar created [username - concert tickets - sports tickets - all tickets]
-    - Personal details/stats [name, age, favorite team, number of concerts, most wins etc]
+    - Personal details/stats [name,favorite team/artist, number of concerts, number of games]
     - option to upload an image of yourself at an event
 
 All Tickets
@@ -29,4 +31,3 @@ Tickets details page
 Create ticket page
     - form 
     - same as details
-    
