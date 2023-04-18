@@ -1,20 +1,24 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
 from .models import Ticket
 
 # Create your views here.
 def home(request):
     return render(request, 'home.html')
 
+@login_required
 def tickets_index(request):
-    tickets = Ticket.objects.all()
+    tickets = Ticket.objects.filter(user=request.user)
     return render(request, 'tickets/index.html', {
         'tickets': tickets
     })
 
+@login_required
 def tickets_detail(request, ticket_id):
-    ticket = Ticket.objects.get(id=ticket_id)
+    tickets = Ticket.objects.filter(user=request.user)
+    ticket = tickets.get(id=ticket_id)
     return render(request, 'tickets/detail.html', {
         'ticket': ticket
     })
