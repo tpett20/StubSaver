@@ -1,4 +1,14 @@
-INCLUDE CSS REFERENCE 
+Main branch - Treat as sacred. merge @ MVP
+Development branch - use to merch working branches.
+CiaranWorking - Ciaran's personal branch
+thomas - Thomas' personal branch
+
+Ticket ID - Primary Key
+User - Foreign Key
+Location - Foreign Key
+Sport Event - Foreign Key
+Concert Event - Foreign Key
+(all missing from Ticket to be coded later)
 
 Log in page
     - Log in option
