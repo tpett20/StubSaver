@@ -10,6 +10,14 @@ Sport Event - Foreign Key
 Concert Event - Foreign Key
 (all missing from Ticket to be coded later)
 
+User model posibilities
+- `username`
+- `password`
+- `email`
+- `first_name`
+- `last_name`
+More are possible however not easy.
+
 Log in page
     - Log in option
     - explanation/brief walkthrough of website functionality

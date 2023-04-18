@@ -1,0 +1,7 @@
+Profile page to be icebox features
+redirect to all tickets index
+
+
+
+once create is linked, section 8
+https://seir-22123.notion.site/Django-Auth-839f1c110a5a4434bd48fa56067cae3b
