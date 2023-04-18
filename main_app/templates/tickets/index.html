@@ -4,10 +4,7 @@
 <h1>Ticket List</h1>
 
 {% for ticket in tickets %}
-<p>{{ ticket.name }}</p>
-<p>Date: {{ ticket.date }}</p>
-<p>Accompanied by: {{ ticket.companion }}</p>
-<p>Type: {{ ticket.event_type }}</p>
+<p><a href="/tickets/{{ ticket.id }}">{{ ticket.name }}</a></p>
 <p>-----</p>
 {% endfor %}
 

@@ -10,3 +10,9 @@ def tickets_index(request):
     return render(request, 'tickets/index.html', {
         'tickets': tickets
     })
+
+def tickets_detail(request, ticket_id):
+    ticket = Ticket.objects.get(id=ticket_id)
+    return render(request, 'tickets/detail.html', {
+        'ticket': ticket
+    })
