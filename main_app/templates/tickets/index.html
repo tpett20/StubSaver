@@ -4,7 +4,7 @@
 <h1>Ticket List</h1>
 
 {% for ticket in tickets %}
-<p><a href="/tickets/{{ ticket.id }}">{{ ticket.name }}</a></p>
+<p><a href="{% url 'detail' ticket.id %}">{{ ticket.name }}</a></p>
 <p>-----</p>
 {% endfor %}
 
