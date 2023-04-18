@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>{{ ticket.name }}</h1>
+
+<p>Date: {{ ticket.date }}</p>
+<p>Accompanied by: {{ ticket.companion }}</p>
+<p>Type: {{ ticket.event_type }}</p>
+
+{% endblock %}
