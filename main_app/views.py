@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 tickets = [
     {
-    'name': 'yankees vs mets', 'sport': 'Baseball'
+    'name': 'Yankees vs Mets', 'sport': 'Baseball'
     }
 ]
 
