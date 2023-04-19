@@ -8,7 +8,7 @@
 <p>Type: {{ ticket.event_type }}</p>
 
 <div>
-    <a href="{% url 'tickets_update' ticket.id %}">Edit</a> | 
+    <a href="{% url 'tickets_update' ticket.id %}">Edit</a> |
     <a href="{% url 'tickets_delete' ticket.id %}">Delete</a>
 </div>
 
@@ -17,20 +17,60 @@
         {% csrf_token %}
         {{ highlight_form.as_p }}
         <input type="submit" value="Add Highlight">
-      </form>
+    </form>
     <table>
-      <thead>
-        <tr><th>Highlight</th><th>URL</th></tr>
-      </thead>
-      <tbody>
-        {% for highlight in ticket.highlight_set.all %}
-          <tr>
-            <td>{{highlight.content}}</td>
-            <td>{{highlight.video_url}}</td>
-          </tr>
-        {% endfor %}
-      </tbody>
+        <thead>
+            <tr>
+                <th>Highlight</th>
+                <th>URL</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for highlight in ticket.highlight_set.all %}
+            <tr>
+                <td>{{highlight.content}}</td>
+                <td>{{highlight.video_url}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
     </table>
-  </div>
-
+</div>
+<hr>
+{% if ticket.event_type == 'C' %}
+<div>
+    <div>
+        <h3>{{ ticket.name }}'s Artists:</h3>
+        {% if ticket.artists.count %}
+        {% for artist in ticket.artists.all %}
+        <div>
+            {{ artist.name }}
+            <form action="{% url 'unassoc_artist' ticket.id artist.id %}" method="POST">
+                {% csrf_token %}
+                <button type="submit">Remove</button>
+                </form>
+        </div>
+        {% endfor %}
+        {% else %}
+        <h5>No Artist added</h5>
+        {% endif %}
+    </div>
+</div>
+<div>
+    <h3>Your Artists</h3>
+    {% if artists.count %}
+    {% for artist in artists.all %}
+    <div>
+        {{ artist.name }}
+        <div>
+            <form action="{% url 'assoc_artist' ticket.id artist.id %}" method="POST">
+                {% csrf_token %}
+                <button type="submit">Add</button>
+        </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <h5>{{ticket.name}} has all the available artists.</h5>
+    {% endif %}
+</div>
+{% endif %}
 {% endblock %}
