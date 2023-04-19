@@ -56,6 +56,14 @@
     </div>
 </div>
 <div>
+    <h3>Add An Artist</h3>
+    <form action="{% url 'add_artist' ticket.id %}" method="POST">
+        {% csrf_token %}
+        {{ artist_form.as_p }}
+        <input type="submit" value="Add Artist">
+    </form>
+</div>
+<div>
     <h3>Your Artists</h3>
     {% if artists.count %}
     {% for artist in artists.all %}
