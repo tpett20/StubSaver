@@ -35,8 +35,8 @@
         </tbody>
     </table>
 </div>
-<!-- This is all new markup to be added just above the <script> tag -->
 <hr>
+{% if ticket.event_type == 'C' %}
 <div>
     <div>
         <h3>{{ ticket.name }}'s Artists:</h3>
@@ -58,7 +58,7 @@
     <div>
         {{ artist.name }}
         <div>
-            <form action="" method="POST">
+            <form action="{% url 'assoc_artist' ticket.id artist.id %}" method="POST">
                 {% csrf_token %}
                 <button type="submit">Add</button>
             </form>
@@ -69,4 +69,5 @@
     <h5>{{ticket.name}} has all the available artists.</h5>
     {% endif %}
 </div>
+{% endif %}
 {% endblock %}

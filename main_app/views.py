@@ -41,6 +41,10 @@ def add_highlight(request, ticket_id):
         new_highlight.save()
     return redirect('detail', ticket_id=ticket_id)
 
+def assoc_artist(request, ticket_id, artist_id):
+    Ticket.objects.get(id=ticket_id).artists.add(artist_id)
+    return redirect('detail', ticket_id=ticket_id)
+
 def signup(request):
     error_message = ''
     if request.method == 'POST':
