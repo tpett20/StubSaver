@@ -21,3 +21,11 @@ class Ticket(models.Model):
     
     def get_absolute_url(self):
         return reverse('detail', kwargs={'ticket_id': self.id})
+
+class Highlight(models.Model):
+    content = models.TextField('Your Highlights')
+    video_url = models.CharField(null=True, blank=True)
+    ticket = models.ForeignKey(Ticket, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.content

@@ -8,7 +8,29 @@
 <p>Type: {{ ticket.event_type }}</p>
 
 <div>
-    <a href="{% url 'tickets_update' ticket.id %}">Edit</a>
+    <a href="{% url 'tickets_update' ticket.id %}">Edit</a> | 
     <a href="{% url 'tickets_delete' ticket.id %}">Delete</a>
 </div>
+
+<div>
+    <form action="{% url 'add_highlight' ticket.id %}" method="POST">
+        {% csrf_token %}
+        {{ highlight_form.as_p }}
+        <input type="submit" value="Add Highlight">
+      </form>
+    <table>
+      <thead>
+        <tr><th>Highlight</th><th>URL</th></tr>
+      </thead>
+      <tbody>
+        {% for highlight in ticket.highlight_set.all %}
+          <tr>
+            <td>{{highlight.content}}</td>
+            <td>{{highlight.video_url}}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
 {% endblock %}
