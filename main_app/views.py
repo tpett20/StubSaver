@@ -8,10 +8,7 @@ from .forms import HighlightForm, ArtistForm
 
 # Create your views here.
 def home(request):
-    title = 'StubSaver'
-    return render(request, 'home.html', {
-        'title': title
-    })
+    return render(request, 'home.html')
 
 @login_required
 def tickets_index(request):

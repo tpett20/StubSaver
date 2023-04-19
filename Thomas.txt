@@ -1,0 +1,2 @@
+Add artists unique requirement, so user can't duplicate them. 
+Update and delete functionality for artists?
