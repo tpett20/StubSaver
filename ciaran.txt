@@ -7,3 +7,4 @@ https://seir-22123.notion.site/Django-1-N-617b65ff94e4435e960361aef2137b67
 on hightlights, make comments optional as well as youtube link
 sdsad
 
+only add 1 location vs many artists
