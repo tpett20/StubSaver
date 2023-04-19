@@ -7,4 +7,8 @@
 <p>Accompanied by: {{ ticket.companion }}</p>
 <p>Type: {{ ticket.event_type }}</p>
 
+<div>
+    <a href="{% url 'tickets_update' ticket.id %}">Edit</a>
+    <a href="{% url 'tickets_delete' ticket.id %}">Delete</a>
+</div>
 {% endblock %}

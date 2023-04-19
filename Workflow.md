@@ -23,15 +23,19 @@ Log in page
     - explanation/brief walkthrough of website functionality
     - Rest of the website should be blocked until you log in.
 
+[CURRENTLY SKIPPED]
 Logged in page / user home screen
-    - Nav bar created [username - concert tickets - sports tickets - all tickets]
+    - Nav bar created [HOME - All Tickets - Log in/logout/signup - CREATEVIEW]
     - Personal details/stats [name,favorite team/artist, number of concerts, number of games]
     - option to upload an image of yourself at an event
+
 
 All Tickets
     - Nav bar 
     - list of tickets with basic information. MVP to just show event name and option to click on ticket. ICebox to have actual cards decorated like a ticket. Click on the ticket to bring you to the ticket details page.
     - Add sports ticket & add concert ticket buttons below. Take you specifically to add those types of ticket
+    - [DETAILVIEW - click on ticket]
+
 
 
 Sports ticket / concert tickets ice box
@@ -45,6 +49,8 @@ Tickets details page
     - artist/teams
     - Personal highlights
     - embedded youtube highlights
+    - [DELETEVIEW]
+    - [UPDATEVIEW]
 
 Create ticket page
     - form 
