@@ -7,7 +7,10 @@ from .models import Ticket
 
 # Create your views here.
 def home(request):
-    return render(request, 'home.html')
+    title = 'StubSaver'
+    return render(request, 'home.html', {
+        'title': title
+    })
 
 @login_required
 def tickets_index(request):
