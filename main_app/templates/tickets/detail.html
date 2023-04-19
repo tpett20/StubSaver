@@ -44,6 +44,10 @@
         {% for artist in ticket.artists.all %}
         <div>
             {{ artist.name }}
+            <form action="{% url 'unassoc_artist' ticket.id artist.id %}" method="POST">
+                {% csrf_token %}
+                <button type="submit">Remove</button>
+                </form>
         </div>
         {% endfor %}
         {% else %}
@@ -61,7 +65,6 @@
             <form action="{% url 'assoc_artist' ticket.id artist.id %}" method="POST">
                 {% csrf_token %}
                 <button type="submit">Add</button>
-            </form>
         </div>
     </div>
     {% endfor %}

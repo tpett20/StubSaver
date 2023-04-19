@@ -45,6 +45,10 @@ def assoc_artist(request, ticket_id, artist_id):
     Ticket.objects.get(id=ticket_id).artists.add(artist_id)
     return redirect('detail', ticket_id=ticket_id)
 
+def unassoc_artist(request, ticket_id, artist_id):
+    Ticket.objects.get(id=ticket_id).artists.remove(artist_id)
+    return redirect('detail', ticket_id=ticket_id)
+
 def signup(request):
     error_message = ''
     if request.method == 'POST':
