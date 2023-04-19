@@ -3,7 +3,7 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Ticket
+from .models import Ticket, Artist
 from .forms import HighlightForm
 
 # Create your views here.
@@ -24,10 +24,13 @@ def tickets_index(request):
 def tickets_detail(request, ticket_id):
     tickets = Ticket.objects.filter(user=request.user)
     ticket = tickets.get(id=ticket_id)
+    id_list = ticket.artists.all().values_list('id')
+    unassociated_artists = Artist.objects.exclude(id__in=id_list)
     highlight_form = HighlightForm()
     return render(request, 'tickets/detail.html', {
         'ticket': ticket,
-        'highlight_form': highlight_form
+        'highlight_form': highlight_form,
+        'artists': unassociated_artists 
     })
 
 def add_highlight(request, ticket_id):

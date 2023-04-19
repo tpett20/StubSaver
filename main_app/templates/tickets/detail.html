@@ -28,7 +28,7 @@
         <tbody>
             {% for highlight in ticket.highlight_set.all %}
             <tr>
-                <td>{{highlight.content}}</td> 
+                <td>{{highlight.content}}</td>
                 <td>{{highlight.video_url}}</td>
             </tr>
             {% endfor %}
@@ -51,5 +51,22 @@
         {% endif %}
     </div>
 </div>
-
+<div>
+    <h3>Your Artists</h3>
+    {% if artists.count %}
+    {% for artist in artists.all %}
+    <div>
+        {{ artist.name }}
+        <div>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <button type="submit">Add</button>
+            </form>
+        </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <h5>{{ticket.name}} has all the available artists.</h5>
+    {% endif %}
+</div>
 {% endblock %}
