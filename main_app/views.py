@@ -4,6 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Ticket
+from .forms import HighlightForm
 
 # Create your views here.
 def home(request):
@@ -23,9 +24,19 @@ def tickets_index(request):
 def tickets_detail(request, ticket_id):
     tickets = Ticket.objects.filter(user=request.user)
     ticket = tickets.get(id=ticket_id)
+    highlight_form = HighlightForm()
     return render(request, 'tickets/detail.html', {
-        'ticket': ticket
+        'ticket': ticket,
+        'highlight_form': highlight_form
     })
+
+def add_highlight(request, ticket_id):
+    form = HighlightForm(request.POST)
+    if form.is_valid():
+        new_highlight = form.save(commit=False)
+        new_highlight.ticket_id = ticket_id
+        new_highlight.save()
+    return redirect('detail', ticket_id=ticket_id)
 
 def signup(request):
     error_message = ''
