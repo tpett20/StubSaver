@@ -9,26 +9,41 @@ EVENT_TYPES = (
 )
 
 # Create your models here.
+
+
 class Artist(models.Model):
     name = models.CharField(max_length=100)
 
     def __str__(self):
         return self.name
 
+
+class Location(models.Model):
+    name = models.CharField(max_length=100)
+    city = models.CharField(max_length=100)
+    country = models.CharField(max_length=100)
+    maps_url = models.CharField(max_length=100, null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
+
 class Ticket(models.Model):
     name = models.CharField(max_length=100)
     date = models.DateField('date (yyyy-mm-dd)')
     companion = models.CharField(max_length=250)
-    event_type = models.CharField(max_length=1, choices=EVENT_TYPES, default=EVENT_TYPES[0][0])
+    event_type = models.CharField(
+        max_length=1, choices=EVENT_TYPES, default=EVENT_TYPES[0][0])
     artists = models.ManyToManyField(Artist)
+    location = models.ForeignKey(Location)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-
 
     def __str__(self):
         return self.name
-    
+
     def get_absolute_url(self):
         return reverse('detail', kwargs={'ticket_id': self.id})
+
 
 class Highlight(models.Model):
     content = models.TextField('Your Highlights')
