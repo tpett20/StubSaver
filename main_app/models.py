@@ -17,7 +17,7 @@ class Artist(models.Model):
 
 class Ticket(models.Model):
     name = models.CharField(max_length=100)
-    date = models.DateField()
+    date = models.DateField('date (yyyy-mm-dd)')
     companion = models.CharField(max_length=250)
     event_type = models.CharField(max_length=1, choices=EVENT_TYPES, default=EVENT_TYPES[0][0])
     artists = models.ManyToManyField(Artist)
