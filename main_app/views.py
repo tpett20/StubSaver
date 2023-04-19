@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Ticket
 
 # Create your views here.
@@ -45,3 +45,11 @@ class TicketCreate(CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
+    
+class TicketUpdate(UpdateView):
+    model = Ticket
+    fields = ['name', 'date', 'companion', 'event_type']
+
+class TicketDelete(DeleteView):
+    model = Ticket
+    success_url = '/tickets'
