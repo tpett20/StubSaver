@@ -6,7 +6,11 @@
 <p>Date: {{ ticket.date }}</p>
 <p>Accompanied by: {{ ticket.companion }}</p>
 <p>Type: {{ ticket.event_type }}</p>
-
+{% if ticket.location == null %}
+<p>Location: None</p>
+{% else %}
+<p>Location: <a href="/locations/{{ ticket.location.id }}">{{ ticket.location }}</a> </p>
+{% endif %}
 <div>
     <a href="{% url 'tickets_update' ticket.id %}">Edit</a> |
     <a href="{% url 'tickets_delete' ticket.id %}">Delete</a>

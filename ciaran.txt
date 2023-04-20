@@ -11,3 +11,5 @@ only add 1 location vs many artists
 
 
 red Asterix for needed fields 
+
+open maps in new tabs
