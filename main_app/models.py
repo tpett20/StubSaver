@@ -27,6 +27,9 @@ class Location(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def get_absolute_url(self):
+        return reverse('location_detail', kwargs={'location_id': self.id})
 
 
 class Ticket(models.Model):
@@ -35,7 +38,7 @@ class Ticket(models.Model):
     companion = models.CharField(max_length=250)
     event_type = models.CharField(
         max_length=1, choices=EVENT_TYPES, default=EVENT_TYPES[0][0])
-    artists = models.ManyToManyField(Artist, blank=True, null=True)
+    artists = models.ManyToManyField(Artist, blank=True)
     location = models.ForeignKey(Location, on_delete=models.SET_NULL, blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 

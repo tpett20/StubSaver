@@ -13,4 +13,5 @@ urlpatterns = [
     path('tickets/<int:ticket_id>/add_artist/', views.add_artist, name='add_artist'),
     path('tickets/<int:ticket_id>/assoc_artist/<int:artist_id>/', views.assoc_artist, name='assoc_artist'),
     path('tickets/<int:ticket_id>/unassoc_artist/<int:artist_id>/', views.unassoc_artist, name='unassoc_artist'),
+    path('locations/create/', views.LocationCreate.as_view(), name='locations_create')
 ]
