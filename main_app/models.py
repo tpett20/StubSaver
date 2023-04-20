@@ -22,7 +22,8 @@ class Location(models.Model):
     name = models.CharField(max_length=100)
     city = models.CharField(max_length=100)
     country = models.CharField(max_length=100)
-    maps_url = models.CharField(max_length=100, null=True, blank=True)
+    maps_url = models.URLField(null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
@@ -34,8 +35,8 @@ class Ticket(models.Model):
     companion = models.CharField(max_length=250)
     event_type = models.CharField(
         max_length=1, choices=EVENT_TYPES, default=EVENT_TYPES[0][0])
-    artists = models.ManyToManyField(Artist)
-    location = models.ForeignKey(Location)
+    artists = models.ManyToManyField(Artist, blank=True, null=True)
+    location = models.ForeignKey(Location, on_delete=models.SET_NULL, blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
