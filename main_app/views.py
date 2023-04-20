@@ -1,7 +1,9 @@
+from django.utils import timezone
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
+from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Ticket, Artist, Location
 from .forms import HighlightForm, ArtistForm
@@ -84,6 +86,9 @@ class TicketUpdate(UpdateView):
 class TicketDelete(DeleteView):
     model = Ticket
     success_url = '/tickets'
+
+class LocationDetail(DetailView):
+    model = Location
 
 class LocationCreate(CreateView):
     model = Location
