@@ -6,6 +6,7 @@
 <p>Venue: {{object.name}}</p>
 <p>City: {{object.city}}</p>
 <p>Country: {{object.country}}</p>
+{% if object.maps_url %}
 <p><a href="{{object.maps_url}}">Maps URL</a></p>
-
+{% endif %}
 {% endblock %}
