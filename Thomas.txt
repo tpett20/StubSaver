@@ -1,2 +1,30 @@
-Add artists unique requirement, so user can't duplicate them. 
+Requirement for artist name to be unique, so user can't duplicate them. 
+Set artists and locations to user ownership connection?
 Update and delete functionality for artists?
+Make sure Auth added to all appropriate views.py views/ CBVs
+Link from location on Ticket Detail Page to Location Detail Page
+
+Pick Up on 4/20
+https://docs.djangoproject.com/en/4.1/topics/forms/modelforms/
+https://docs.djangoproject.com/en/4.2/topics/forms/modelforms/
+
+The Ticket's Foreign Key Model Field for Location will populate a ModelChoiceField dropdown in the CreateTicket form. We can then associate tickets to locations there. 
+Ideally we'll add a link to say "Click here to add another location to the dropdown"
+
+Create a Location - Use CBV
+Ticket Model: 
+
+On this site:
+https://docs.djangoproject.com/en/4.1/ref/models/fields/#django.db.models.ForeignKey
+https://docs.djangoproject.com/en/4.2/ref/models/fields/#django.db.models.Field.formfield 
+See unique, URLField, and OneToOneField 
+Maybe move URLField to create ticket form?
+And make highlight one charfield for a list of shorter highlights?
+
+More one one-to-one
+https://docs.djangoproject.com/en/4.1/topics/db/examples/one_to_one/
+https://docs.djangoproject.com/en/4.2/topics/db/examples/one_to_one/ 
+
+On detail page, conditionally render with concert emojis or sports emojis depending on category.
+Concert Emojis: 🎤🎸🎵
+Sports Emojis: ⚽️⚾️🏀
