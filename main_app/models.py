@@ -18,14 +18,14 @@ class Artist(models.Model):
         return self.name
 
 
-class Location(models.Model):
-    name = models.CharField(max_length=100)
-    city = models.CharField(max_length=100)
-    country = models.CharField(max_length=100)
-    maps_url = models.CharField(max_length=100, null=True, blank=True)
+# class Location(models.Model):
+#     name = models.CharField(max_length=100)
+#     city = models.CharField(max_length=100)
+#     country = models.CharField(max_length=100)
+#     maps_url = models.CharField(max_length=100, null=True, blank=True)
 
-    def __str__(self):
-        return self.name
+#     def __str__(self):
+#         return self.name
 
 
 class Ticket(models.Model):
@@ -35,7 +35,7 @@ class Ticket(models.Model):
     event_type = models.CharField(
         max_length=1, choices=EVENT_TYPES, default=EVENT_TYPES[0][0])
     artists = models.ManyToManyField(Artist)
-    location = models.ForeignKey(Location)
+    # location = models.ForeignKey(Location)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):

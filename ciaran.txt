@@ -8,3 +8,6 @@ on hightlights, make comments optional as well as youtube link
 sdsad
 
 only add 1 location vs many artists
+
+
+red Asterix for needed fields 
