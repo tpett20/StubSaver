@@ -10,6 +10,9 @@ Sport Event - Foreign Key
 Concert Event - Foreign Key
 (all missing from Ticket to be coded later)
 
+
+Sports event -> Bulma -> photo
+
 User model posibilities
 - `username`
 - `password`
