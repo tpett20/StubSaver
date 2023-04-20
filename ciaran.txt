@@ -9,3 +9,5 @@ on hightlights, make comments optional as well as youtube link, fix the typing
 red Asterix for needed fields 
 
 open maps in new tabs
+
+https://bulmatemplates.github.io/bulma-templates/
