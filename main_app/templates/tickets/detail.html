@@ -85,4 +85,14 @@
     {% endif %}
 </div>
 {% endif %}
+
+{% if ticket.event_type == 'S' %}
+<h3>Add Game Details</h3>
+<p><a href="{% url 'sport_event_create' ticket.id %}">Click Here</a></p>
+
+<h3>Game Details</h3>
+{% for event in ticket.sportevent_set.all %}
+{{ event.home_team }}
+{% endfor %}
+{% endif %}
 {% endblock %}
