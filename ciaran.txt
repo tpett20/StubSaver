@@ -1,0 +1,11 @@
+Profile page to be icebox features
+redirect to all tickets index
+
+date format on create form [BULMA design]
+https://seir-22123.notion.site/Django-1-N-617b65ff94e4435e960361aef2137b67
+
+on hightlights, make comments optional as well as youtube link, fix the typing
+
+red Asterix for needed fields 
+
+open maps in new tabs
