@@ -2,13 +2,26 @@
 
 {% block content %}
 
-<ul>
+<h1 class="title has-text-white-ter">All Locations</h1>
+<div class="columns is-multiline" style="padding: 2rem">
     {% for object in object_list %}
-    <li><a href="{% url 'location_detail' object.id %}">{{ object.name }}, {{ object.city }}</a></li>
-    {% empty %}
-    <li>No objects yet.</li>
-    {% endfor %}
-</ul>
 
+    <div class="column is-one-quarter">
+        <div class="card">
+            <div class="card-content">
+                <div class="media">
+                    <div class="media-content">
+                        <p class="title is-4"><a href="{% url 'location_detail' object.id %}">{{ object.name }}</a></p>
+                        <p class="subtitle is-6">{{ object.city }}</p>
+                    </div>
+                </div>
+
+                <div class="content">
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
 
 {% endblock %}

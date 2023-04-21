@@ -1,11 +1,41 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Ticket List</h1>
+<h1 class="title has-text-white-ter">Ticket List</h1>
 
-{% for ticket in tickets %}
-<p><a href="{% url 'detail' ticket.id %}">{{ ticket.name }}</a> | {{ticket.date}}</p>
-<p>-----</p>
-{% endfor %}
+<div class="columns is-multiline" style="padding: 2rem">
+    {% for ticket in tickets %}
+
+    <div class="column is-one-quarter">
+        <div class="card">
+            <div class="card-image">
+                <figure class="image is-2by1">
+                    {% if ticket.event_type == 'C' %}
+                    <img src="https://i.imgur.com/YgvDQZR.png" alt="Placeholder image">
+                    {% else %}
+                    <img src="https://i.imgur.com/0zuympu.png" alt="Placeholder image">
+                    {% endif %}
+                </figure>
+            </div>
+            <div class="card-content">
+                <div class="media">
+                    <div class="media-content">
+                        <p class="title is-4"><a href="{% url 'detail' ticket.id %}">{{ ticket.name }}</a></p>
+                        <p class="subtitle is-6">{{ ticket.date}}</p>
+                    </div>
+                </div>
+
+                <div class="content">
+                    {% if ticket.location != null %}
+                    {{ ticket.location }}
+                    {% else %}
+                    <p>No location added</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
 
 {% endblock %}

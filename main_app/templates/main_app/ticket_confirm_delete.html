@@ -1,13 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1>Delete Ticket</h1>
+<div class="card has-background-light">
+  <div class="card-content">
+    <h1 class="title is-3">Delete Ticket</h1>
 
-  <h4>Are you sure you want to delete {{ object.name }}?</h4>
+    <h4 class="subtitle is-5">Are you sure you want to delete {{ object.name }}?</h4>
 
-  <form action="" method="POST">
-    {% csrf_token %}
-    <input type="submit" value="Yes please">
-    <a href="{% url 'detail' ticket.id %}">Cancel</a>
-  </form>
+    <form action="" method="POST">
+      {% csrf_token %}
+      <button type="submit" class="button is-danger">Delete</button>
+      <a href="{% url 'detail' ticket.id %}" class="button is-info">Cancel</a>
+    </form>
+  </div>
+</div>
 {% endblock %}
