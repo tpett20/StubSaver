@@ -15,5 +15,6 @@ urlpatterns = [
     path('tickets/<int:ticket_id>/unassoc_artist/<int:artist_id>/', views.unassoc_artist, name='unassoc_artist'),
     path('locations/', views.LocationIndex.as_view(), name="locations_index"),
     path('locations/<int:pk>/', views.LocationDetail.as_view(), name='location_detail'),
-    path('locations/create/', views.LocationCreate.as_view(), name='locations_create')
+    path('locations/create/', views.LocationCreate.as_view(), name='locations_create'), 
+    path('tickets/<int:ticket_id>/add_sportevent', views.add_sportevent, name='add_sportevent')
     ]
