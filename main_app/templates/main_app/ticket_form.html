@@ -1,16 +1,20 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  {% if object %}
-  <h1>Edit {{object.name}}</h1>
-  {% else %}
-  <h1>Add Ticket</h1>
-  {% endif %}
-  <form action="" method="POST">
-    {% csrf_token %}
-    <table>
-      {{ form.as_table }}
-    </table>
-    <button type="submit" class="button is-info">Submit</button>
-  </form>
+<div class="card has-background-light">
+  <div class="card-content">
+    {% if object %}
+    <h1 class="title is-3">Edit {{object.name}}</h1>
+    {% else %}
+    <h1 class="title is-3">Add a Ticket</h1>
+    {% endif %}
+    <form action="" method="POST">
+      {% csrf_token %}
+      <table>
+        {{ form.as_table }}
+      </table>
+      <button type="submit" class="button is-info">Submit</button>
+    </form>
+  </div>
+</div>
 {% endblock %}

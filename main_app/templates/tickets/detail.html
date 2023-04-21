@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="columns">
-    <div class="column">
-        <div class="card has-background-light">
+    <div class="column has-background-light">
+        <div class="card has-background-info-light">
             <div class="card-content">
                 <div class="media">
                     <div class="media-content">
                         {% if ticket.event_type == 'C' %}
                         <p class="title is-3">{{ ticket.name }} 🎵</p>
                         {% else %}
-                        <p>{{ ticket.name }}</p>
+                        <p class="title is-3">{{ ticket.name }}</p>
                         {% endif %}
                         <p class="subtitle is-5">{{ ticket.date }}</p>
                     </div>
@@ -32,7 +32,7 @@
         {% if ticket.event_type == 'C' %}
         <div class="columns mt-5">
             <div class="column">
-                <h3>All the Concert's Performers:</h3>
+                <h3 class="title is-5 mb-2">All the Concert's Performers:</h3>
                 {% if ticket.artists.count %}
                 <table class="table is-hoverable is-fullwidth">
                     <thead>
@@ -63,7 +63,7 @@
         </div>
         <div class="columns">
             <div class="column">
-                <h3>Your Artists</h3>
+                <h3 class="title is-5 mb-2">Your Artists</h3>
                 {% if artists.count %}
                 <table class="table is-hoverable is-fullwidth">
                     <thead>
@@ -91,7 +91,7 @@
                 {% endif %}
             </div>
             <div class="column">
-                <h3>Add An Artist</h3>
+                <h3 class="title is-5 mb-2">Add An Artist</h3>
                 <form action="{% url 'add_artist' ticket.id %}" method="POST">
                     {% csrf_token %}
                     {{ artist_form.as_p }}
@@ -129,14 +129,14 @@
         {% endif %}
     </div>
 
-    <div class="column">
+    <div class="column has-background-light">
         <form action="{% url 'add_highlight' ticket.id %}" method="POST">
             {% csrf_token %}
             {{ highlight_form.as_p }}
             <button type="submit" class="button is-info is-small">Add Highlight</button>
         </form>
         {% if ticket.highlight_set.all.count > 0 %}
-        <table class="table is-fullwidth">
+        <table class="table is-fullwidth mt-3">
             <thead>
                 <tr>
                     <th>Highlights</th>

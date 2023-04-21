@@ -12,16 +12,16 @@
 </head>
 
 <body>
-    <header class="hero is-small is-success mb-4">
+    <header class="hero is-small is-dark mb-4">
         <div class="hero-body">
             <h1 class="title is-1">StubSaver</h1>
             <p class="subtitle is-5">
                 <a href="{% url 'home' %}">Home</a> |
                 {% if user.is_authenticated %}
                 <a href="{% url 'index' %}">All Tickets</a> | 
-                <a href="{% url 'tickets_create' %}">Add a Ticket</a> |
+                <a href="{% url 'tickets_create' %}">Add Ticket</a> |
                 <a href="{% url 'locations_index'%}">All Locations</a> |
-                <a href="{% url 'locations_create' %}">Add a Location</a> |
+                <a href="{% url 'locations_create' %}">Add Location</a> |
                 <a href="{% url 'logout' %}">Log Out</a>
                 {% else %}
                 <a href="{% url 'signup' %}">Sign Up</a> | 

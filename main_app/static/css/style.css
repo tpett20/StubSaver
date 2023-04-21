@@ -8,3 +8,12 @@ textarea {
     padding: 6px; 
     resize: none;
 }
+
+body {
+    height: 100vh;
+    background: url(https://i.imgur.com/lAcXqxP.png) center / cover;
+}
+
+table {
+    border-radius: 6px;
+}

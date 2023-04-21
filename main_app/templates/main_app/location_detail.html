@@ -1,12 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-<h1>Location Detail</h1>
-<p>Venue: {{object.name}}</p>
-<p>City: {{object.city}}</p>
-<p>Country: {{object.country}}</p>
-{% if object.maps_url %}
-<p><a href="{{object.maps_url}}">Maps URL</a></p>
+<div class="column is-one-third">
+    <div class="card has-background-light">
+        <div class="card-content">
+            <h1 class="title is-3">{{object.name}}</h1>
+            <p>City: {{object.city}}</p>
+            <p>Country: {{object.country}}</p>
+            {% if object.maps_url %}
+            <p><a href="{{object.maps_url}}">Maps URL</a></p>
+        </div>
+    </div>
+</div>
 {% endif %}
 {% endblock %}
