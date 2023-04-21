@@ -5,8 +5,8 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Ticket, Artist, Location, SportEvent
-from .forms import HighlightForm, ArtistForm
+from .models import Ticket, Artist, Location
+from .forms import HighlightForm, ArtistForm, SportEventForm
 
 # Create your views here.
 def home(request):
@@ -27,11 +27,13 @@ def tickets_detail(request, ticket_id):
     unassociated_artists = Artist.objects.exclude(id__in=id_list)
     highlight_form = HighlightForm()
     artist_form = ArtistForm()
+    sportevent_form = SportEventForm()
     return render(request, 'tickets/detail.html', {
         'ticket': ticket,
         'highlight_form': highlight_form,
         'artists': unassociated_artists, 
-        'artist_form': artist_form
+        'artist_form': artist_form,
+        'sportevent_form': sportevent_form
     })
 
 def add_highlight(request, ticket_id):
@@ -47,6 +49,15 @@ def add_artist(request, ticket_id):
     if form.is_valid():
         new_artist = form.save()
         new_artist.save()
+    return redirect('detail', ticket_id=ticket_id)
+
+def add_sportevent(request, ticket_id):
+    form = SportEventForm(request.POST)
+    if form.is_valid():
+        new_sportevent = form.save(commit=False)
+        new_sportevent.ticket_id = ticket_id
+        new_sportevent.user = request.user
+        new_sportevent.save()
     return redirect('detail', ticket_id=ticket_id)
 
 def assoc_artist(request, ticket_id, artist_id):
@@ -100,14 +111,3 @@ class LocationCreate(CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
-
-class SportEventCreate(CreateView):
-    model = SportEvent
-    fields = ['sport', 'league', 'home_team', 'away_team', 'home_score', 'away_score', 'ticket']
-
-    def form_valid(self, form):
-        print('HELOOOOOOOOO', self)
-        form.instance.user = self.request.user
-        return super().form_valid(form)
-    
-    success_url = '/tickets'

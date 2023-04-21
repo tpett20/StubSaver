@@ -30,6 +30,9 @@ class Location(models.Model):
     
     def get_absolute_url(self):
         return reverse('location_detail', kwargs={'pk': self.id})
+    
+    class Meta: 
+        ordering = ['name']
 
 
 class Ticket(models.Model):
@@ -42,10 +45,13 @@ class Ticket(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.name
+        return f"{self.name} on {self.date}"
 
     def get_absolute_url(self):
         return reverse('detail', kwargs={'ticket_id': self.id})
+    
+    class Meta: 
+        ordering = ['-date']
 
 
 class SportEvent(models.Model):
@@ -55,7 +61,7 @@ class SportEvent(models.Model):
     away_team = models.CharField(max_length=100)
     home_score = models.IntegerField()
     away_score = models.IntegerField()
-    ticket = models.OneToOneField(Ticket, on_delete=models.CASCADE)
+    ticket = models.ForeignKey(Ticket, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):

@@ -16,5 +16,5 @@ urlpatterns = [
     path('locations/', views.LocationIndex.as_view(), name="locations_index"),
     path('locations/<int:pk>/', views.LocationDetail.as_view(), name='location_detail'),
     path('locations/create/', views.LocationCreate.as_view(), name='locations_create'), 
-    path('tickets/<int:pk>/sport_event/create/', views.SportEventCreate.as_view(), name='sport_event_create')
+    path('tickets/<int:ticket_id>/add_sportevent', views.add_sportevent, name='add_sportevent')
     ]

@@ -1,3 +1,5 @@
+DEPLOY
+
 Requirement for artist name to be unique, so user can't duplicate them. 
 Set artists and locations to user ownership connection?
 Update and delete functionality for artists?
@@ -28,3 +30,11 @@ https://docs.djangoproject.com/en/4.2/topics/db/examples/one_to_one/
 On detail page, conditionally render with concert emojis or sports emojis depending on category.
 Concert Emojis: 🎤🎸🎵
 Sports Emojis: ⚽️⚾️🏀
+
+List View - Maybe to only show user's Locations
+https://www.geeksforgeeks.org/listview-class-based-views-django/
+
+Drop down for locations should only show user's locations... How?
+https://stackoverflow.com/questions/47182279/how-to-limit-choices-for-foreignkey-field-in-django-createview
+
+I think it makes more sense to either change SportEvent to a ForeignKey (one to many relationship) or convert it to a teams idea and treat teams like artists where they can be added to a sports ticket. 
