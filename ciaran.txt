@@ -1,6 +1,9 @@
 Profile page to be icebox features
 redirect to all tickets index
 
+
+
+
 date format on create form [BULMA design]
 https://seir-22123.notion.site/Django-1-N-617b65ff94e4435e960361aef2137b67
 
@@ -10,4 +13,35 @@ red Asterix for needed fields
 
 open maps in new tabs
 
+Companion field should be none allowed
+
+"type: S" irrelevant now? 
+
+URL not a hyperlink or embedded
+
+Add artist always adding first id.
+
+page title needs to stand out 
+
+all tickets - "none" location irrelevant
+
+removed burger menu, but defaults to it when screen is thinner. Maybe keep burger menu?
+
+URL changes from upper and lower
+
+boxes don't cascade
+
+
+
 https://bulmatemplates.github.io/bulma-templates/
+
+
+Features;
+    responsive images depending on ticket type
+    User uploaded images
+    burger menu vs nav bar
+    website name + Logo  top left
+    page content needs to be better looking (different template?)
+    different tickets (i.e. stand up comendy)
+    Youtube link to match google maps link
+
