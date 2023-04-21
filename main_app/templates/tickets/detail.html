@@ -1,140 +1,162 @@
 {% extends 'base.html' %}
 {% block content %}
+<div class="columns">
+    <div class="column">
+        <div class="card has-background-light">
+            <div class="card-content">
+                <div class="media">
+                    <div class="media-content">
+                        {% if ticket.event_type == 'C' %}
+                        <p class="title is-3">{{ ticket.name }} 🎵</p>
+                        {% else %}
+                        <p>{{ ticket.name }}</p>
+                        {% endif %}
+                        <p class="subtitle is-5">{{ ticket.date }}</p>
+                    </div>
+                </div>
 
-<h1>{{ ticket.name }}</h1>
+                <div class="content">
+                    <p>Went with: {{ ticket.companion }}</p>
+                    {% if ticket.location == null %}
+                    <p>Location: Not Specified</p>
+                    {% else %}
+                    <p>Location: <a href="/locations/{{ ticket.location.id }}">{{ ticket.location }}</a> </p>
+                    {% endif %}
+                    <p>
+                        <a href="{% url 'tickets_update' ticket.id %}">Edit</a> |
+                        <a href="{% url 'tickets_delete' ticket.id %}">Delete</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% if ticket.event_type == 'C' %}
+        <div class="columns mt-5">
+            <div class="column">
+                <h3>All the Concert's Performers:</h3>
+                {% if ticket.artists.count %}
+                <table class="table is-hoverable is-fullwidth">
+                    <thead>
+                        <tr>
+                            <th>Artist</th>
+                            <th> </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for artist in ticket.artists.all %}
+                        <tr>
+                            <td>{{ artist.name }}</td>
+                            <td>
+                                <form action="{% url 'unassoc_artist' ticket.id artist.id %}" method="POST">
+                                    {% csrf_token %}
+                                    <button type="submit" class="button is-danger is-small">Remove</button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                <h5>No Artist added</h5>
+                {% endif %}
+            </div>
+            <div class="column"></div>
+        </div>
+        <div class="columns">
+            <div class="column">
+                <h3>Your Artists</h3>
+                {% if artists.count %}
+                <table class="table is-hoverable is-fullwidth">
+                    <thead>
+                        <tr>
+                            <th>Artist</th>
+                            <th> </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for artist in artists.all %}
+                        <tr>
+                            <td>{{ artist.name }}</td>
+                            <td>
+                                <form action="{% url 'assoc_artist' ticket.id artist.id %}" method="POST">
+                                    {% csrf_token %}
+                                    <button type="submit" class="button is-success is-small">Add</button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                <h5>{{ticket.name}} has all the available artists.</h5>
+                {% endif %}
+            </div>
+            <div class="column">
+                <h3>Add An Artist</h3>
+                <form action="{% url 'add_artist' ticket.id %}" method="POST">
+                    {% csrf_token %}
+                    {{ artist_form.as_p }}
+                    <button type="submit" class="button is-info is-small">Add Artist</button>
+                </form>
+            </div>
+        </div>
+        {% endif %}
 
-<p>Date: {{ ticket.date }}</p>
-<p>Accompanied by: {{ ticket.companion }}</p>
-<p>Type: {{ ticket.event_type }}</p>
-{% if ticket.location == null %}
-<p>Location: None</p>
-{% else %}
-<p>Location: <a href="/locations/{{ ticket.location.id }}">{{ ticket.location }}</a> </p>
-{% endif %}
-<div>
-    <a href="{% url 'tickets_update' ticket.id %}">Edit</a> |
-    <a href="{% url 'tickets_delete' ticket.id %}">Delete</a>
-</div>
+        {% if ticket.event_type == 'S' %}
+        {% if ticket.sportevent_set.all.count > 0 %}
+        {% for event in ticket.sportevent_set.all %}
+        <h3>Game Details</h3>
+        <p>Sport: {{ event.sport }}</p>
+        <p>League: {{ event.league }}</p>
+        <p>Final Score:</p>
+        <p>{{ event.home_team }}: {{ event.home_score }}</p>
+        <p>{{ event.away_team }}: {{ event.away_score }}</p>
 
-<div>
-    <form action="{% url 'add_highlight' ticket.id %}" method="POST">
-        {% csrf_token %}
-        {{ highlight_form.as_p }}
-        <input type="submit" value="Add Highlight">
-    </form>
-    {% if ticket.highlight_set.all.count > 0 %}
-    <table>
-        <thead>
-            <tr>
-                <th>Highlight</th>
-                <th>URL</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for highlight in ticket.highlight_set.all %}
-            <tr>
-                <td>{{highlight.content}}</td>
-                <td>{{highlight.video_url}}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    {% endif %}
-</div>
-<hr>
-{% if ticket.event_type == 'C' %}
-<div>
-    <div>
-        <h3>{{ ticket.name }}'s Artists:</h3>
-        {% if ticket.artists.count %}
-        <table>
+        {% if event.home_score > event.away_score %}
+        <p>Winner: {{event.home_team}} (home)</p>
+        {% elif event.away_score > event.home_score%}
+        <p>Winner: {{event.away_team}} (away)</p>
+        {% endif %}
+
+        {% endfor %}
+        {% else %}
+        <h3>Add Game Details</h3>
+        <form action="{% url 'add_sportevent' ticket.id %}" method="POST">
+            {% csrf_token %}
+            {{ sportevent_form.as_p }}
+            <input type="submit" value="Add Game Details">
+        </form>
+        {% endif %}
+        {% endif %}
+    </div>
+
+    <div class="column">
+        <form action="{% url 'add_highlight' ticket.id %}" method="POST">
+            {% csrf_token %}
+            {{ highlight_form.as_p }}
+            <button type="submit" class="button is-info is-small">Add Highlight</button>
+        </form>
+        {% if ticket.highlight_set.all.count > 0 %}
+        <table class="table is-fullwidth">
             <thead>
                 <tr>
-                    <th>Artist</th>
+                    <th>Highlights</th>
                     <th> </th>
                 </tr>
             </thead>
             <tbody>
-                {% for artist in ticket.artists.all %}
+                {% for highlight in ticket.highlight_set.all %}
                 <tr>
-                    <td>{{ artist.name }}</td>
-                    <td>
-                        <form action="{% url 'unassoc_artist' ticket.id artist.id %}" method="POST">
-                            {% csrf_token %}
-                            <button type="submit">Remove</button>
-                        </form>
-                    </td>
+                    <td>{{highlight.content}}</td>
+                    {% if highlight.video_url == null %}
+                    <td></td>
+                    {% else %}
+                    <td><a href="{{highlight.video_url}}">Video Link</a></td>
+                    {% endif %}
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
-        {% else %}
-        <h5>No Artist added</h5>
         {% endif %}
     </div>
 </div>
-<div>
-    <h3>Add An Artist</h3>
-    <form action="{% url 'add_artist' ticket.id %}" method="POST">
-        {% csrf_token %}
-        {{ artist_form.as_p }}
-        <input type="submit" value="Add Artist">
-    </form>
-</div>
-<div>
-    <h3>Your Artists</h3>
-    {% if artists.count %}
-    <table>
-        <thead>
-            <tr>
-                <th>Artist</th>
-                <th> </th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for artist in artists.all %}
-            <tr>
-                <td>{{ artist.name }}</td>
-                <td>
-                    <form action="{% url 'assoc_artist' ticket.id artist.id %}" method="POST">
-                        {% csrf_token %}
-                        <button type="submit">Add</button>
-                    </form>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    {% else %}
-    <h5>{{ticket.name}} has all the available artists.</h5>
-    {% endif %}
-</div>
-{% endif %}
-
-{% if ticket.event_type == 'S' %}
-{% if ticket.sportevent_set.all.count > 0 %}
-{% for event in ticket.sportevent_set.all %}
-<h3>Game Details</h3>
-<p>Sport: {{ event.sport }}</p>
-<p>League: {{ event.league }}</p>
-<p>Final Score:</p>
-<p>{{ event.home_team }}: {{ event.home_score }}</p>
-<p>{{ event.away_team }}: {{ event.away_score }}</p>
-
-{% if event.home_score > event.away_score %}
-<p>Winner: {{event.home_team}} (home)</p>
-{% elif event.away_score > event.home_score%}
-<p>Winner: {{event.away_team}} (away)</p>
-{% endif %}
-
-{% endfor %}
-{% else %}
-<h3>Add Game Details</h3>
-<form action="{% url 'add_sportevent' ticket.id %}" method="POST">
-    {% csrf_token %}
-    {{ sportevent_form.as_p }}
-    <input type="submit" value="Add Game Details">
-</form>
-{% endif %}
-{% endif %}
 {% endblock %}
