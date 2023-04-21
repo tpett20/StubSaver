@@ -1,13 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
+<div class="column is-one-third">
+    <div class="card has-background-light">
+        <div class="card-content">
+            <h1 class="title is-3">Log In</h1>
 
-<h1>Log In</h1>
-
-<form method="POST" action="{% url 'login' %}">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="hidden" name="next" value="{{ next }}">
-    <button type="submit" class="btn">Log In</button>
-</form>
-
+            <form method="POST" action="{% url 'login' %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="hidden" name="next" value="{{ next }}">
+                <button type="submit" class="button is-info">Log In</button>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}

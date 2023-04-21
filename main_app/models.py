@@ -16,6 +16,9 @@ class Artist(models.Model):
 
     def __str__(self):
         return self.name
+    
+    class Meta: 
+        ordering = ['name']
 
 
 class Location(models.Model):
@@ -70,7 +73,7 @@ class SportEvent(models.Model):
 
 class Highlight(models.Model):
     content = models.TextField('Your Highlights')
-    video_url = models.CharField(null=True, blank=True)
+    video_url = models.URLField(null=True, blank=True)
     ticket = models.ForeignKey(Ticket, on_delete=models.CASCADE)
 
     def __str__(self):
