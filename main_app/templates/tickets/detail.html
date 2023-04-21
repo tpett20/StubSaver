@@ -22,6 +22,7 @@
         {{ highlight_form.as_p }}
         <input type="submit" value="Add Highlight">
     </form>
+    {% if ticket.highlight_set.all.count > 0 %}
     <table>
         <thead>
             <tr>
@@ -38,6 +39,7 @@
             {% endfor %}
         </tbody>
     </table>
+    {% endif %}
 </div>
 <hr>
 {% if ticket.event_type == 'C' %}
@@ -110,20 +112,29 @@
 {% endif %}
 
 {% if ticket.event_type == 'S' %}
-<h3>Add Game Details</h3>
-<form action="{% url 'add_sportevent' ticket.id %}" method="POST">
-    {% csrf_token %}
-    {{ sportevent_form.as_p }}
-    <input type="submit" value="Add Game Details">
-</form>
-<h3>Game Details</h3>
+{% if ticket.sportevent_set.all.count > 0 %}
 {% for event in ticket.sportevent_set.all %}
+<h3>Game Details</h3>
 <p>Sport: {{ event.sport }}</p>
 <p>League: {{ event.league }}</p>
 <p>Final Score:</p>
 <p>{{ event.home_team }}: {{ event.home_score }}</p>
 <p>{{ event.away_team }}: {{ event.away_score }}</p>
 
+{% if event.home_score > event.away_score %}
+<p>Winner: {{event.home_team}} (home)</p>
+{% elif event.away_score > event.home_score%}
+<p>Winner: {{event.away_team}} (away)</p>
+{% endif %}
+
 {% endfor %}
+{% else %}
+<h3>Add Game Details</h3>
+<form action="{% url 'add_sportevent' ticket.id %}" method="POST">
+    {% csrf_token %}
+    {{ sportevent_form.as_p }}
+    <input type="submit" value="Add Game Details">
+</form>
+{% endif %}
 {% endif %}
 {% endblock %}
