@@ -95,7 +95,7 @@
                 <form action="{% url 'add_artist' ticket.id %}" method="POST">
                     {% csrf_token %}
                     {{ artist_form.as_p }}
-                    <button type="submit" class="button is-info is-small">Add Artist</button>
+                    <button type="submit" class="button is-info is-small mt-2">Add Artist</button>
                 </form>
             </div>
         </div>
@@ -103,27 +103,49 @@
 
         {% if ticket.event_type == 'S' %}
         {% if ticket.sportevent_set.all.count > 0 %}
-        {% for event in ticket.sportevent_set.all %}
-        <h3>Game Details</h3>
-        <p>Sport: {{ event.sport }}</p>
-        <p>League: {{ event.league }}</p>
-        <p>Final Score:</p>
-        <p>{{ event.home_team }}: {{ event.home_score }}</p>
-        <p>{{ event.away_team }}: {{ event.away_score }}</p>
-
-        {% if event.home_score > event.away_score %}
-        <p>Winner: {{event.home_team}} (home)</p>
-        {% elif event.away_score > event.home_score%}
-        <p>Winner: {{event.away_team}} (away)</p>
-        {% endif %}
-
-        {% endfor %}
+        <h3 class="title is-4 mt-3 mb-2">Game Details</h3>
+        <table class="table is-hoverable">
+            <tbody>
+                {% for event in ticket.sportevent_set.all %}
+                <tr>
+                    <th>Sport</th>
+                    <td>{{ event.sport }}</td>
+                </tr>
+                <tr>
+                    <th>League</th>
+                    <td>{{ event.league }}</td>
+                </tr>
+                <tr>
+                    <th>Home Team</th>
+                    <td>{{ event.home_team }}</td>
+                </tr>
+                <tr>
+                    <th>Away Team</th>
+                    <td>{{ event.away_team }}</td>
+                </tr>
+                <tr>
+                    <th>Final Score</th>
+                    <td>{{ event.home_score }} - {{ event.away_score }}</td>
+                </tr>
+                <tr>
+                    <th>Winner</th>
+                    {% if event.home_score > event.away_score %}
+                    <td>{{event.home_team}}</td>
+                    {% elif event.away_score > event.home_score %}
+                    <td>{{event.away_team}}</td>
+                    {% else %}
+                    <td>Draw</td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
         {% else %}
-        <h3>Add Game Details</h3>
+        <h3 class="title is-5 mt-3 mb-1">Add Game Details</h3>
         <form action="{% url 'add_sportevent' ticket.id %}" method="POST">
             {% csrf_token %}
             {{ sportevent_form.as_p }}
-            <input type="submit" value="Add Game Details">
+            <button type="submit" class="button is-info is-small mt-2 mb-3">Add Game Details</button>
         </form>
         {% endif %}
         {% endif %}
@@ -133,7 +155,7 @@
         <form action="{% url 'add_highlight' ticket.id %}" method="POST">
             {% csrf_token %}
             {{ highlight_form.as_p }}
-            <button type="submit" class="button is-info is-small">Add Highlight</button>
+            <button type="submit" class="button is-info is-small mt-2 mb-3">Add Highlight</button>
         </form>
         {% if ticket.highlight_set.all.count > 0 %}
         <table class="table is-fullwidth mt-3">

@@ -101,6 +101,10 @@ class TicketDelete(DeleteView):
 class LocationIndex(ListView):
     model = Location
 
+    # https://stackoverflow.com/questions/24725617/how-to-make-generic-listview-only-show-users-listing
+    def get_queryset(self):
+        return self.model.objects.filter(user=self.request.user)
+
 class LocationDetail(DetailView):
     model = Location
 
