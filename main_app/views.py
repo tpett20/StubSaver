@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -36,6 +37,7 @@ def tickets_detail(request, ticket_id):
         'sportevent_form': sportevent_form
     })
 
+@login_required
 def add_highlight(request, ticket_id):
     form = HighlightForm(request.POST)
     if form.is_valid():
@@ -44,6 +46,7 @@ def add_highlight(request, ticket_id):
         new_highlight.save()
     return redirect('detail', ticket_id=ticket_id)
 
+@login_required
 def add_artist(request, ticket_id):
     form = ArtistForm(request.POST)
     if form.is_valid():
@@ -51,6 +54,7 @@ def add_artist(request, ticket_id):
         new_artist.save()
     return redirect('detail', ticket_id=ticket_id)
 
+@login_required
 def add_sportevent(request, ticket_id):
     form = SportEventForm(request.POST)
     if form.is_valid():
@@ -60,10 +64,12 @@ def add_sportevent(request, ticket_id):
         new_sportevent.save()
     return redirect('detail', ticket_id=ticket_id)
 
+@login_required
 def assoc_artist(request, ticket_id, artist_id):
     Ticket.objects.get(id=ticket_id).artists.add(artist_id)
     return redirect('detail', ticket_id=ticket_id)
 
+@login_required
 def unassoc_artist(request, ticket_id, artist_id):
     Ticket.objects.get(id=ticket_id).artists.remove(artist_id)
     return redirect('detail', ticket_id=ticket_id)
@@ -82,7 +88,7 @@ def signup(request):
     context = {'form': form, 'error_message': error_message}
     return render(request, 'registration/signup.html', context)
 
-class TicketCreate(CreateView):
+class TicketCreate(LoginRequiredMixin, CreateView):
     model = Ticket
     fields = ['name', 'date', 'location', 'companion', 'event_type']
 
@@ -90,25 +96,25 @@ class TicketCreate(CreateView):
         form.instance.user = self.request.user
         return super().form_valid(form)
     
-class TicketUpdate(UpdateView):
+class TicketUpdate(LoginRequiredMixin, UpdateView):
     model = Ticket
     fields = ['name', 'date', 'location', 'companion', 'event_type']
 
-class TicketDelete(DeleteView):
+class TicketDelete(LoginRequiredMixin, DeleteView):
     model = Ticket
     success_url = '/tickets'
 
-class LocationIndex(ListView):
+class LocationIndex(LoginRequiredMixin, ListView):
     model = Location
 
     # https://stackoverflow.com/questions/24725617/how-to-make-generic-listview-only-show-users-listing
     def get_queryset(self):
         return self.model.objects.filter(user=self.request.user)
 
-class LocationDetail(DetailView):
+class LocationDetail(LoginRequiredMixin, DetailView):
     model = Location
 
-class LocationCreate(CreateView):
+class LocationCreate(LoginRequiredMixin, CreateView):
     model = Location
     fields = ['name', 'city', 'country', 'maps_url']
 
