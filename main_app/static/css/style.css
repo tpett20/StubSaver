@@ -1,17 +1,40 @@
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    background: url(https://i.imgur.com/lAcXqxP.png) center / cover;
+}
+
 input {
     width: 90%; 
-    margin: 6px 0; 
+    margin: 0 10px; 
+    display: block; 
 }
+
+select {
+    margin: 0 10px;
+}
+
+label {
+    font-weight: bold;
+}
+
+#signup-form input {
+    margin: 0px;
+}
+
+#signup-form p {
+    margin-bottom: 14px;
+}
+
 textarea {
     width: 90%;
     height: 60px;
     padding: 6px; 
     resize: none;
-}
-
-body {
-    height: 100vh;
-    background: url(https://i.imgur.com/lAcXqxP.png) center / cover;
+    margin: 0 10px; 
 }
 
 table {
