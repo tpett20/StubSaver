@@ -59,7 +59,7 @@ class Ticket(models.Model):
 
 class SportEvent(models.Model):
     sport = models.CharField(max_length=100)
-    league = models.CharField(max_length=100)
+    league = models.CharField('League/ Competition', max_length=100)
     home_team = models.CharField(max_length=100)
     away_team = models.CharField(max_length=100)
     home_score = models.IntegerField()
