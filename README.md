@@ -1,4 +1,7 @@
 # StubSaver
+
+[StubSaver](http://stubsaver.herokuapp.com/) on Heroku
+
 Welcome to StubSaver!
 
 Remember a time back before every ticket to every event was online. Before you needed to charge your phone to ensure that you can get into your event as it needs to be scanned to get you through the gate? We do.
@@ -6,11 +9,11 @@ Remember a time back before every ticket to every event was online. Before you n
 Remember when you'd have a corkboard, a shoebox or a wallet full of ticket stubs to your favourite events? Searching through them to unlock memories that were long since burried? We do.
 
 Now, we have worked together to recreate that experience virtually, with StubSaver!
-[img]https://i.imgur.com/CUCnKPC.png[/img]
+![img](https://i.imgur.com/CUCnKPC.png)
 
 First, you will need to log into our web application. From here you'll be taken to your main page that displays your tickets. If this is your first time logging in, the page itself will be empty.
 
-[img]https://i.imgur.com/fcKY5Xk.png[/img]
+![img](https://i.imgur.com/fcKY5Xk.png)
 
 Then, you will need to select "Add Ticket". This will be where all of your logged tickets will be stored. The "Add Ticket" function will allow you to update your profile with a ticket to an event that you went to.
 
@@ -32,7 +35,7 @@ Sport: What sport did you see? Football? Baseball? Hockey?
 - Away Score: What was the score of the away team?
 
 Once submitted, the form will be removed and replaced with your inputted details.
-[img]https://i.imgur.com/kXviZjb.png[/img]
+![img](https://i.imgur.com/kXviZjb.png)
 
 On the side of the page, you have the option to add highlights.
 - Your Highlights: In here input as much information as you want about your experience. How were your seats? how was the weather? did something special happen?
@@ -44,7 +47,7 @@ Head back to "all tickets" and you will see a card with your ticket. If it's a s
 
 If it's a concert however it'll be a picture of Chris Martin!
 
-[img]https://i.imgur.com/x2S22PO.png[/img]
+![img](https://i.imgur.com/x2S22PO.png)
 
 Want to add a location? Select "Add Location" from the nav bar.
 
@@ -54,14 +57,14 @@ We're asking for specific information for this. We beleive that the location can
 - Country: The country of the venue
 - Maps URL: We reccomend google maps, but any maps url should be inputted here.
 
-[img]https://i.imgur.com/jh8t3dC.png[/img]
+![img](https://i.imgur.com/jh8t3dC.png)
 
 Once submitted, you'll see the card for your newly added location.
 
 Head back to the ticket you just made. On the original details page it advises that "Location: Not Specified". Select "Edit" and it will bring you back to the edit page and you can add your newly created location.
 
 If you create a concert, the details page will be different. You can still add highlights and the location, however instead of the sporting result, you're able to add and create an artist.
-[img]https://i.imgur.com/9cDqqCW.png[/img]
+![img](https://i.imgur.com/9cDqqCW.png)
 To create an artist, simply add their name to the "Add An Artist" form and click add artist.
 
 They will be generate and select the green "Add" button to add them to the event!
@@ -80,8 +83,8 @@ Thank you for using StubSaver!
 Django, Python, postgresql, Heroku, Bulma, HTML, CSS
 
 # Planning documentation
-https://www.figma.com/file/9BcgPMe6R6hTqGnnUB9F8U/StubSaver?node-id=53-2&t=N9iu14bJDzcBIkYM-0 - Figma showing the change in style
-https://trello.com/b/NmkkAK48/stubsaver - Trello board shoing icebox features and including links that we found useful
+- [Figma](https://www.figma.com/file/9BcgPMe6R6hTqGnnUB9F8U/StubSaver?node-id=53-2&t=N9iu14bJDzcBIkYM-0) - Figma showing the change in style
+- [Trello](https://trello.com/b/NmkkAK48/stubsaver) - Trello board shoing icebox features and including links that we found useful
 
 
 By Thomas & Ciaran
